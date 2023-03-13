@@ -1,0 +1,63 @@
+Date : 2023-03-11 12:47:53
+Directory : c:\Users\ARJIT\OneDrive\Documents\django projects\E_commerce_website\atlasonline
+Total : 31 files,  910 codes, 144 comments, 219 blanks, all 1273 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| HTML     |         15 |        480 |         71 |         81 |        632 |
+| Python   |         16 |        430 |         73 |        138 |        641 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++----------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                       | files      | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                          |         31 |        910 |        144 |        219 |      1,273 |
+| . (Files)                                                                                                                  |          1 |         15 |          3 |          5 |         23 |
+| atlasonline                                                                                                                |          6 |         95 |         59 |         47 |        201 |
+| shop                                                                                                                       |         24 |        800 |         82 |        167 |      1,049 |
+| shop (Files)                                                                                                               |          7 |        173 |         10 |         78 |        261 |
+| shop\migrations                                                                                                            |          2 |        147 |          1 |          8 |        156 |
+| shop\templates                                                                                                             |         15 |        480 |         71 |         81 |        632 |
+| shop\templates\shop                                                                                                        |         15 |        480 |         71 |         81 |        632 |
++----------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++----------------------------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                                                                                                   | language | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| c:\Users\ARJIT\OneDrive\Documents\django projects\E_commerce_website\atlasonline\atlasonline\__init__.py                   | Python   |          0 |          0 |          1 |          1 |
+| c:\Users\ARJIT\OneDrive\Documents\django projects\E_commerce_website\atlasonline\atlasonline\asgi.py                       | Python   |          4 |          8 |          5 |         17 |
+| c:\Users\ARJIT\OneDrive\Documents\django projects\E_commerce_website\atlasonline\atlasonline\settings.py                   | Python   |         73 |         27 |         32 |        132 |
+| c:\Users\ARJIT\OneDrive\Documents\django projects\E_commerce_website\atlasonline\atlasonline\urls.py                       | Python   |         10 |         15 |          2 |         27 |
+| c:\Users\ARJIT\OneDrive\Documents\django projects\E_commerce_website\atlasonline\atlasonline\views.py                      | Python   |          4 |          1 |          2 |          7 |
+| c:\Users\ARJIT\OneDrive\Documents\django projects\E_commerce_website\atlasonline\atlasonline\wsgi.py                       | Python   |          4 |          8 |          5 |         17 |
+| c:\Users\ARJIT\OneDrive\Documents\django projects\E_commerce_website\atlasonline\manage.py                                 | Python   |         15 |          3 |          5 |         23 |
+| c:\Users\ARJIT\OneDrive\Documents\django projects\E_commerce_website\atlasonline\shop\__init__.py                          | Python   |          0 |          0 |          1 |          1 |
+| c:\Users\ARJIT\OneDrive\Documents\django projects\E_commerce_website\atlasonline\shop\admin.py                             | Python   |         12 |          1 |          3 |         16 |
+| c:\Users\ARJIT\OneDrive\Documents\django projects\E_commerce_website\atlasonline\shop\apps.py                              | Python   |          3 |          0 |          3 |          6 |
+| c:\Users\ARJIT\OneDrive\Documents\django projects\E_commerce_website\atlasonline\shop\migrations\0001_initial.py           | Python   |        147 |          1 |          7 |        155 |
+| c:\Users\ARJIT\OneDrive\Documents\django projects\E_commerce_website\atlasonline\shop\migrations\__init__.py               | Python   |          0 |          0 |          1 |          1 |
+| c:\Users\ARJIT\OneDrive\Documents\django projects\E_commerce_website\atlasonline\shop\models.py                            | Python   |        106 |          7 |         51 |        164 |
+| c:\Users\ARJIT\OneDrive\Documents\django projects\E_commerce_website\atlasonline\shop\templates\shop\appliances.html       | HTML     |          3 |          0 |          0 |          3 |
+| c:\Users\ARJIT\OneDrive\Documents\django projects\E_commerce_website\atlasonline\shop\templates\shop\basic.html            | HTML     |        136 |         29 |         27 |        192 |
+| c:\Users\ARJIT\OneDrive\Documents\django projects\E_commerce_website\atlasonline\shop\templates\shop\beauty.html           | HTML     |          3 |          0 |          0 |          3 |
+| c:\Users\ARJIT\OneDrive\Documents\django projects\E_commerce_website\atlasonline\shop\templates\shop\beverages.html        | HTML     |          3 |          0 |          0 |          3 |
+| c:\Users\ARJIT\OneDrive\Documents\django projects\E_commerce_website\atlasonline\shop\templates\shop\cleaning.html         | HTML     |          3 |          0 |          0 |          3 |
+| c:\Users\ARJIT\OneDrive\Documents\django projects\E_commerce_website\atlasonline\shop\templates\shop\clothes.html          | HTML     |          3 |          0 |          0 |          3 |
+| c:\Users\ARJIT\OneDrive\Documents\django projects\E_commerce_website\atlasonline\shop\templates\shop\daily_items.html      | HTML     |          3 |          0 |          0 |          3 |
+| c:\Users\ARJIT\OneDrive\Documents\django projects\E_commerce_website\atlasonline\shop\templates\shop\electronics.html      | HTML     |          3 |          0 |          0 |          3 |
+| c:\Users\ARJIT\OneDrive\Documents\django projects\E_commerce_website\atlasonline\shop\templates\shop\food.html             | HTML     |          3 |          0 |          1 |          4 |
+| c:\Users\ARJIT\OneDrive\Documents\django projects\E_commerce_website\atlasonline\shop\templates\shop\furniture.html        | HTML     |          3 |          0 |          0 |          3 |
+| c:\Users\ARJIT\OneDrive\Documents\django projects\E_commerce_website\atlasonline\shop\templates\shop\health.html           | HTML     |          3 |          0 |          0 |          3 |
+| c:\Users\ARJIT\OneDrive\Documents\django projects\E_commerce_website\atlasonline\shop\templates\shop\index.html            | HTML     |        305 |         42 |         53 |        400 |
+| c:\Users\ARJIT\OneDrive\Documents\django projects\E_commerce_website\atlasonline\shop\templates\shop\medical.html          | HTML     |          3 |          0 |          0 |          3 |
+| c:\Users\ARJIT\OneDrive\Documents\django projects\E_commerce_website\atlasonline\shop\templates\shop\office.html           | HTML     |          3 |          0 |          0 |          3 |
+| c:\Users\ARJIT\OneDrive\Documents\django projects\E_commerce_website\atlasonline\shop\templates\shop\sports_equipment.html | HTML     |          3 |          0 |          0 |          3 |
+| c:\Users\ARJIT\OneDrive\Documents\django projects\E_commerce_website\atlasonline\shop\tests.py                             | Python   |          1 |          1 |          2 |          4 |
+| c:\Users\ARJIT\OneDrive\Documents\django projects\E_commerce_website\atlasonline\shop\urls.py                              | Python   |         18 |          0 |          2 |         20 |
+| c:\Users\ARJIT\OneDrive\Documents\django projects\E_commerce_website\atlasonline\shop\views.py                             | Python   |         33 |          1 |         16 |         50 |
+| Total                                                                                                                      |          |        910 |        144 |        219 |      1,273 |
++----------------------------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+

@@ -1,0 +1,27 @@
+{% extends 'shop/basic.html' %}
+
+{% block title%} View Cart{% endblock %}
+
+{% block body %} this is the body
+
+<div id="table">
+
+</div>
+
+{% block js %} {% endblock %}
+<script>
+    if (localStorage.getItem('Cart_dic') == null) // cart not there
+    {
+        var cart = {};
+    }
+    else {
+        cart = JSON.parse(localStorage.getItem('Cart_dic')); // cart present
+    }
+    console.log(cart)
+
+
+
+   
+</script>
+
+{% endblock %}
