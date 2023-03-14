@@ -1,10 +1,12 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from math import ceil
-from .models import Items,Customer
-
+from .models import Items,Customer,Bills,Ledger,Category,Product,Brand
+import json
+from datetime import date
 
 customer=-1
+Cart=""
 def index(request,flag=0):
     food= Items.objects.filter(category_name="food")
     appliances= Items.objects.filter(category_name="Appliances")
@@ -139,8 +141,44 @@ def search(request):
 
 
 def cart(request):
-    cart= request.COOKIES.get('cart')
-    print(cart)
-    return render(request,"shop/viewCart.html")
+    global Cart
+    result = request.GET.get('result', None)
+  
+
+    if (result!=None):
+        Cart=result
+    # print(Cart)
+    d=json.loads(Cart)
+    
+   
+    Products={}
+    var=0
+    for a in d:
+        temp_prod=Items.objects.get(item_id=a)
+        Products[temp_prod]=[d[a],d[a]*temp_prod.cost_price]
+        var+=d[a]*temp_prod.cost_price
+    # print(Products)
+    params={'products':Products,'sum':var,'customer':customer}
+    return render(request,"shop/viewCart.html",params)
+
+
+def checkout(request):
+   print(customer)
+   d=json.loads(Cart)
+   if customer!=-1:
+       last=Ledger.objects.all()
+       max=0
+       for a in last:
+           if a.bill_no>max:
+               max=a.bill_no
+       print(max+1)
+       new_ledger=Ledger(bill_no=max+1, date_of_purchase =date.today(), customer=customer)
+       new_ledger.save()
+
+   for a in d:
+        temp_prod=Items.objects.get(item_id=a)
+        new_bill=Bills(max+1,category=Category.objects.get(category_name=temp_prod.category_name) ,product=Product.objects.get(product_name=temp_prod.product_name),brand=Brand.objects.get(brand_name=temp_prod.brand_name),quantity=d[a],subtotal=d[a]*temp_prod.cost_price)
+        new_bill.save()
+   return redirect("/shop/")
          
 

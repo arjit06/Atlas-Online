@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path,re_path
 from . import views
 
 urlpatterns = [
@@ -21,5 +21,9 @@ urlpatterns = [
     path('logout/',views.logout , name="logout"),
     path('productview/<int:id>',views.prodView , name="productview"),
     path('search/',views.search , name="search"),
-    path('cart/',views.cart , name="cart")
+    path('checkout/',views.checkout ,name="checkout"),
+
+    # path('cart/',views.cart , name="cart")
+    re_path(r'^cart$', views.cart, name='cart')
+   
 ]

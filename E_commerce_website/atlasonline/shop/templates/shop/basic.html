@@ -109,10 +109,11 @@
         <button class="btn btn-success mx-2 mt-1" data-bs-toggle="modal" data-bs-target="#loginModal">Log
           in</button>
         <button class="btn btn-success mx-2 mt-1" data-bs-toggle="modal" data-bs-target="#signupModal">Sign Up</button>
-        <button type="button" class="btn btn-secondary mx-2" data-id="popcart" data-bs-html="true"
-        data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom"
-        data-bs-content="Cart for your items in my shopping cart">
-        Cart (<span id="cart-num">0</span>) </button>
+        <form action="/shop/cart" method="POST">{% csrf_token %}
+          <button type="submit" class="btn btn-secondary mx-2" id="popcart" data-bs-html="true"
+            data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom">
+            Cart (<span id="cart-num">0</span>) </button>
+        </form>
 
 
       </div>
@@ -350,12 +351,26 @@
         cart[pro_id] = 1;
       }
       console.log(cart);
-      document.getElementById('cart-num').innerHTML =Object.keys(cart).length;
-      localStorage.setItem('Cart_dic', JSON.stringify(cart));
-      // updateCart(cart)  
+      document.getElementById('cart-num').innerHTML = Object.keys(cart).length;
+      cart2=cart;
+      var value =  JSON.stringify(cart);
+      document.cookie="cart="+cart;
+      localStorage.setItem('Cart_dic',value);
     })
 
-    document.querySelector('[data-id="popcart"]').setAttribute('data-bs-content', '<h5>Cart for your items in my shopping cart</h5>');
+    $('#popcart').click(function()
+    {
+      console.log('clicked')
+      $.ajax({
+        type: "GET",
+        url: '/shop/cart',
+        data: {
+            "result": JSON.stringify(cart2),
+        },
+        dataType: "json"
+    });
+    })
+
   </script>
 
    <script>
