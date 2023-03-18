@@ -161,6 +161,36 @@ def cart(request):
     params={'products':Products,'sum':var,'customer':customer}
     return render(request,"shop/viewCart.html",params)
 
+def orders(request):
+    p=Items.objects.filter(product_name="milk")
+   
+
+
+    if customer!=-1: bill_no=Ledger.objects.filter(customer=customer)
+    else: bill_no=[]
+
+    cnt=0
+    orders=[]
+    for a in bill_no:
+        bill_entries=Bills.objects.filter(bill_no=a)
+        temp_products={}
+        var=0
+        
+        for a in bill_entries:
+            
+            curr_product=Items.objects.filter(category_name=a.category,product_name=a.product,brand_name=a.brand)
+            # print(curr_product.product_name)
+           
+            temp_products[curr_product.first]=[a.quantity,a.subtotal]
+            var+=a.subtotal
+        cnt=cnt+1
+        orders.append([temp_products,var,cnt])
+        
+    # print(orders)
+    params={'orders':orders,'range':range(1,len(orders)+1)}
+    return render(request,"shop/customer_orders.html",params)
+
+
 
 def checkout(request):
    print(customer)
@@ -180,5 +210,4 @@ def checkout(request):
         new_bill=Bills(max+1,category=Category.objects.get(category_name=temp_prod.category_name) ,product=Product.objects.get(product_name=temp_prod.product_name),brand=Brand.objects.get(brand_name=temp_prod.brand_name),quantity=d[a],subtotal=d[a]*temp_prod.cost_price)
         new_bill.save()
    return redirect("/shop/")
-         
 

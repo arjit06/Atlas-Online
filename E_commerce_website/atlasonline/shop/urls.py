@@ -22,6 +22,7 @@ urlpatterns = [
     path('productview/<int:id>',views.prodView , name="productview"),
     path('search/',views.search , name="search"),
     path('checkout/',views.checkout ,name="checkout"),
+    path('your_orders/',views.orders ,name="checkout"),
 
     # path('cart/',views.cart , name="cart")
     re_path(r'^cart$', views.cart, name='cart')

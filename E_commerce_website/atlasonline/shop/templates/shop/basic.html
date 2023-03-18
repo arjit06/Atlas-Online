@@ -110,10 +110,13 @@
           in</button>
         <button class="btn btn-success mx-2 mt-1" data-bs-toggle="modal" data-bs-target="#signupModal">Sign Up</button>
         <form action="/shop/cart" method="POST">{% csrf_token %}
-          <button type="submit" class="btn btn-secondary mx-2" id="popcart" data-bs-html="true"
+          <button type="submit" class="btn btn-secondary mx-2 mt-1" id="popcart" data-bs-html="true"
             data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom">
             Cart (<span id="cart-num">0</span>) </button>
         </form>
+
+        <button class="btn btn-danger mx-2 mt-1 empty-cart" >Empty Cart</button>
+
 
 
       </div>
@@ -204,7 +207,7 @@
 
           </ul>
           <form action="/shop/logout/" method="POST">{% csrf_token %}
-            <button class="btn btn-danger mt-3 mb-5 btn-md" type="submit" name="Submit">Log Out</button>
+            <button class="btn btn-danger mt-3 mb-5 btn-md empty-cart" type="submit" name="Submit">Log Out</button>
           </form>
 
           <button class="btn btn-success mt-2 btn-lg" type="submit" name="Submit">Log in as an Admin</button>
@@ -337,6 +340,16 @@
       cart = JSON.parse(localStorage.getItem('Cart_dic')); // cart present
     }
     document.getElementById('cart-num').innerHTML =Object.keys(cart).length;
+
+    $('.empty-cart').click(function() // empty cart
+    {
+      localStorage.clear()
+      cart2={}
+      cart={}
+      document.getElementById('cart-num').innerHTML =0;
+      console.log(cart2);
+    }
+    )
 
 
     // add to cart clicked 

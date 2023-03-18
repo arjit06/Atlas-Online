@@ -122,10 +122,12 @@
         <button class="btn btn-success mx-2 mt-1" data-bs-toggle="modal" data-bs-target="#signupModal">Sign Up</button>
 
         <form action="/shop/cart" method="POST">{% csrf_token %}
-          <button type="submit" class="btn btn-secondary mx-2" id="popcart" data-bs-html="true"
+          <button type="submit" class="btn btn-secondary mx-2 mt-1" id="popcart" data-bs-html="true"
             data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom">
             Cart (<span id="cart-num">0</span>) </button>
         </form>
+
+        <button class="btn btn-danger mx-2 mt-1 empty-cart" >Empty Cart</button>
 
       </div>
     </div>
@@ -198,7 +200,7 @@
         <div class="offcanvas-body">
           <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="#">
+              <a class="nav-link" aria-current="page" href="/shop/your_orders/">
                 <h5>Your Orders</h5>
               </a>
             </li>
@@ -215,7 +217,7 @@
 
           </ul>
           <form action="/shop/logout/" method="POST">{% csrf_token %}
-            <button class="btn btn-danger mt-3 mb-5 btn-md" type="submit" name="Submit">Log Out</button>
+            <button class="btn btn-danger mt-3 mb-5 btn-md empty-cart" type="submit" name="Submit">Log Out</button>
           </form>
 
           <button class="btn btn-success mt-2 btn-lg" type="submit" name="Submit">Log in as an Admin</button>
@@ -318,13 +320,13 @@
 
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
       data-bs-slide="prev">
-      <span class="divpr" class="carousel-control-prev-icon " id="prevcar" aria-hidden="true"></span>
-      <span class="divpr" class="visually-hidden">Previous</span>
+      <span class="carousel-control-prev-icon " id="prevcar" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
     </button>
     <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
       data-bs-slide="next">
-      <span class="divpr" class="carousel-control-next-icon " id="nextcar" aria-hidden="true"></span>
-      <span class="divpr" class="visually-hidden">Next</span>
+      <span  class="carousel-control-next-icon " id="nextcar" aria-hidden="true"></span>
+      <span  class="visually-hidden">Next</span>
     </button>
   </div>
 
@@ -741,6 +743,17 @@
 
     var cart2=cart;
 
+    $('.empty-cart').click(function() // empty cart
+    {
+      localStorage.clear()
+      cart2={}
+      cart={}
+      document.getElementById('cart-num').innerHTML =0;
+      console.log(cart2);
+    }
+    )
+
+    
 
     // add to cart clicked 
     $('.cart').click(function () {
@@ -757,13 +770,18 @@
       document.getElementById('cart-num').innerHTML = Object.keys(cart).length;
       cart2=cart;
       var value =  JSON.stringify(cart);
-      document.cookie="cart="+cart;
       localStorage.setItem('Cart_dic',value);
     })
 
+   
+    console.log(cart)
+
+
+   
+
     $('#popcart').click(function()
     {
-      console.log('clicked')
+      console.log(cart2)
       $.ajax({
         type: "GET",
         url: '/shop/cart',
@@ -773,6 +791,8 @@
         dataType: "json"
     });
     })
+
+    
 
   </script>
 
