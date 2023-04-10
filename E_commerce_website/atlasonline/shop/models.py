@@ -90,6 +90,26 @@ class Customer(models.Model):
         managed = False
         db_table = 'customer'
 
+class Finance(models.Model):
+    category_id = models.IntegerField()
+    category_name = models.CharField(max_length=45)
+    product_id = models.IntegerField()
+    product_name = models.CharField(max_length=45)
+    brand_id = models.IntegerField()
+    brand_name = models.CharField(max_length=45)
+    selling_price = models.DecimalField(max_digits=10, decimal_places=0)
+    quantity = models.IntegerField()
+    cost_price = models.DecimalField(max_digits=10, decimal_places=0)
+    bill_no = models.IntegerField()
+    subtotal = models.DecimalField(max_digits=10, decimal_places=0, blank=True, null=True)
+    date_of_purchase = models.DateField()
+    customer_id = models.IntegerField()
+    cust_name = models.CharField(max_length=45)
+    finance_id = models.AutoField(primary_key=True)
+
+    class Meta:
+        managed = False
+        db_table = 'finance'
 
 class Inventory(models.Model):
     category = models.ForeignKey(Category, models.DO_NOTHING)
@@ -116,6 +136,7 @@ class Items(models.Model):
     item_id = models.AutoField(primary_key=True)
     image = models.ImageField(upload_to="shop/images",default="")
     descript = models.CharField(max_length=16000,default="")
+    selling_price = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
         return str(self.item_id)+") "+self.brand_name+" "+self.product_name

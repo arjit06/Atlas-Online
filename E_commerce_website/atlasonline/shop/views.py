@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from math import ceil
-from .models import Items,Customer,Bills,Ledger,Category,Product,Brand
+from .models import Items,Customer,Bills,Ledger,Category,Product,Brand,Finance
 import json
 from datetime import date
 
@@ -210,4 +210,51 @@ def checkout(request):
         new_bill=Bills(max+1,category=Category.objects.get(category_name=temp_prod.category_name) ,product=Product.objects.get(product_name=temp_prod.product_name),brand=Brand.objects.get(brand_name=temp_prod.brand_name),quantity=d[a],subtotal=d[a]*temp_prod.cost_price)
         new_bill.save()
    return redirect("/shop/")
+
+def admin_page(request):
+     return render(request,'shop/admin_page.html')
+
+def query_output(request):
+    
+    return render(request,'shop/query_output.html')
+
+def query_output_top10(request):
+    l=Finance.objects.raw("select finance_id,cust_name,count(distinct bill_no) as cnt from finance group by customer_id  order by count(distinct bill_no) desc  Limit 5;")
+    params={"customers":l}
+        
+    return render(request,'shop/query_output_top10.html',params)
+
+def query_output_all_cats_by_profit(request):
+    l=Finance.objects.raw("select finance_id,cust_name,count(distinct bill_no) as cnt from finance group by customer_id  order by count(distinct bill_no) desc  Limit 5;")
+    params={"customers":l}
+        
+    return render(request,'shop/query_output_top10.html',params)
+    
+
+def query_output_olap1_disinct_prods_int_year(request):
+    l=Finance.objects.raw("select finance_id,category_name,Year(date_of_purchase) as year ,sum(quantity) as Quantity_sold from finance group by category_name,Year(date_of_purchase) with rollup;")
+    params={"products":l}
+        
+    return render(request,'shop/query_output_olap1_disinct_prods_int_year.html',params)
+
+def query_output_olap2_brand_wise_profit_in_year(request):
+    l=Finance.objects.raw("select finance_id, brand_name,Year(date_of_purchase) as year,((sum(selling_price*quantity)-sum(cost_price*quantity))) as profit  from finance group by brand_name,Year(date_of_purchase) with rollup;")
+    params={"profits":l}
+        
+    return render(request,'shop/query_output_olap2_brand_wise_profit_in_year.html',params)
+
+def query_output_olap3_amt_spent_by_cust_each_month(request):
+    l=Finance.objects.raw("select finance_id, cust_name, month(date_of_purchase) as month, year(date_of_purchase) as year , sum(subtotal) as total from finance group by  cust_name, month(date_of_purchase), year(date_of_purchase)  with rollup;")
+    params={"customers":l}
+        
+    return render(request,'shop/query_output_olap3_amt_spent_by_cust_each_month.html',params)
+
+def query_output_olap4_profit_percent_of_each_brand(request):
+    l=Finance.objects.raw("select finance_id, product_name, brand_name, ((sum(selling_price)-sum(cost_price))/sum(cost_price))*100 as profit_percentage from finance group by  product_name, brand_name  with rollup;")
+    params={"products":l}
+        
+    return render(request,'shop/query_output_olap4_profit_percent_of_each_brand.html',params)
+
+
+
 

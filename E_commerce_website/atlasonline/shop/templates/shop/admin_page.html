@@ -1,0 +1,56 @@
+{% extends 'shop/basic.html' %}
+
+{% block title%} Admin Page{% endblock %}
+
+{% block body %}
+{% load static %}
+<h1 class="text-center mt-4">Admin Queries (Restricted Access)</h1>
+
+<div class="text-container d-flex flex-column align-items-center">
+    <h2 class="mt-3 mb-3">OLAP QUERIES</h2>
+    <div class="btn mt-4 mb-4" style="background-color: #fcd860;">
+        <a href="/shop/query_output_olap1_disinct_prods_int_year" class="text-decoration-none text-reset">
+            <h3>How many non distinct products were sold in each category each year ?</h3>
+        </a>
+    </div>
+    <div class="btn btn-warning mt-4 mb-4" style="background-color: #ffd857;">
+        <a href="/shop/query_output_olap2_brand_wise_profit_in_year" class="text-decoration-none text-reset">
+            <h3>How has been the brand-wise profit (in Rs.) in each year been like ?</h3>
+        </a>
+    </div>
+    <div class="btn btn-warning mt-4 mb-4" style="background-color: #fdd245;">
+        <a href="/shop/query_output_olap3_amt_spent_by_cust_each_month" class="text-decoration-none text-reset">
+            <h3>What is total amount spent by each customer (in Rs.) in each month, year for buying stuff ?</h3>
+        </a>
+    </div>
+    <div class="btn btn-warning mt-4 mb-4">
+        <a href="/shop/query_output_olap4_profit_percent_of_each_brand" class="text-decoration-none text-reset">
+            <h3>What is the profit percentage for each brand of every product ? </h3>
+            <h3>(to decide which brand is beneficial to buy products to stock the store) </h3>
+        </a>
+    </div>
+
+    <h2 class="mt-3 mb-3">SOME OTHER QUERIES</h2>
+    <div class="btn btn-success mt-4 mb-4" style="background-color:#00b37d;">
+        <a href="/shop/query_output_top10" class="text-decoration-none text-reset">
+            <h3>Who are the top 5 customers who have the most bills in the store ordered by the number of their bills ?
+            </h3>
+        </a>
+    </div>
+
+    <div class="btn btn-success mt-4 mb-4" style="background-color:#00996b;">
+        <a href="/shop/query_output" class="text-decoration-none text-reset">
+            <h3>List all the categories of the store in order of most profitable to least profitable
+            </h3>
+        </a>
+    </div>
+
+    <div class="btn btn-success mt-4 mb-4">
+        <a href="/shop/query_output" class="text-decoration-none text-reset">
+            <h3>Finding the most luxurious (Case 1) or cost-effective (Case 2) brand in the </h3>
+            <h3>store looking at the average price of the products sold by it</h3>
+        </a>
+    </div>
+</div>
+
+{% endblock %}
