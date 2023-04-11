@@ -78,10 +78,14 @@ Searches products based on product name /brand name /category name or even a **r
 ![Screenshot (109)](https://user-images.githubusercontent.com/108218688/231084577-6ba77058-9079-4cfc-99bf-36f8c4faafe9.png)  
 <br />
 <br />
+Searching drink 
+<br />
 <br />
 ![Screenshot (125)](https://user-images.githubusercontent.com/108218688/231084637-d79c31fc-34bd-4d1b-bcaa-4eac2f6c9f6e.png)
 ![Screenshot (127)](https://user-images.githubusercontent.com/108218688/231084652-20dd7196-0fdd-45ec-baec-ec22b39cf0c0.png)  
 <br />
+<br />
+Searching medicine
 <br />
 <br />
 ![Screenshot (128)](https://user-images.githubusercontent.com/108218688/231084667-ea7a8daf-8f12-479b-a5e6-416bfbb409fb.png)
@@ -100,6 +104,8 @@ Searches products based on product name /brand name /category name or even a **r
 ## SignUp and LogIn Modals- with **credentials validity checker**
 ![Screenshot (111)](https://user-images.githubusercontent.com/108218688/231084961-db531c77-e64b-451b-b006-dbb3e89d4d36.png) 
 <br />
+<br />
+Entering incorrect credentials while logging in
 <br />
 <br />
 ![Screenshot (136)](https://user-images.githubusercontent.com/108218688/231085056-3e606221-6255-4e77-b4fd-06c31d366b57.png)
@@ -131,6 +137,8 @@ Searches products based on product name /brand name /category name or even a **r
 ![Screenshot (117)](https://user-images.githubusercontent.com/108218688/231086877-f3c6a3e3-94c2-472b-9c37-5fd9406ce3a4.png)
 ![Screenshot (118)](https://user-images.githubusercontent.com/108218688/231086888-6719d146-247c-4129-add0-3ffe0206fdfc.png)  
 <br />
+<br />
+Now viewing the Queries 
 <br />
 <br />
 ![Screenshot (119)](https://user-images.githubusercontent.com/108218688/231086905-34ee4971-6fce-40f0-a6f4-e612e7ebbee0.png) 
