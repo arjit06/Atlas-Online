@@ -75,11 +75,9 @@ Python-Django to manage the backend. The second component is for the database ma
 Searches products based on product name /brand name /category name or even a **related keyword** !
 
 ![Screenshot (108)](https://user-images.githubusercontent.com/108218688/231084549-b8aa87cd-db08-4818-9683-f7b906962b04.png)
-![Screenshot (109)](https://user-images.githubusercontent.com/108218688/231084577-6ba77058-9079-4cfc-99bf-36f8c4faafe9.png)
-<br />
+![Screenshot (109)](https://user-images.githubusercontent.com/108218688/231084577-6ba77058-9079-4cfc-99bf-36f8c4faafe9.png)  
 ![Screenshot (125)](https://user-images.githubusercontent.com/108218688/231084637-d79c31fc-34bd-4d1b-bcaa-4eac2f6c9f6e.png)
-![Screenshot (127)](https://user-images.githubusercontent.com/108218688/231084652-20dd7196-0fdd-45ec-baec-ec22b39cf0c0.png)
-<br />
+![Screenshot (127)](https://user-images.githubusercontent.com/108218688/231084652-20dd7196-0fdd-45ec-baec-ec22b39cf0c0.png)  
 ![Screenshot (128)](https://user-images.githubusercontent.com/108218688/231084667-ea7a8daf-8f12-479b-a5e6-416bfbb409fb.png)
 ![Screenshot (129)](https://user-images.githubusercontent.com/108218688/231084675-8dac7d52-d7f3-499a-ab2d-490f560b5e4c.png)
 <br />
@@ -94,8 +92,7 @@ Searches products based on product name /brand name /category name or even a **r
 
 
 ## SignUp and LogIn Modals- with **credentials validity checker**
-![Screenshot (111)](https://user-images.githubusercontent.com/108218688/231084961-db531c77-e64b-451b-b006-dbb3e89d4d36.png)
-<br />
+![Screenshot (111)](https://user-images.githubusercontent.com/108218688/231084961-db531c77-e64b-451b-b006-dbb3e89d4d36.png)  
 ![Screenshot (136)](https://user-images.githubusercontent.com/108218688/231085056-3e606221-6255-4e77-b4fd-06c31d366b57.png)
 ![Screenshot (112)](https://user-images.githubusercontent.com/108218688/231085142-2457b8e6-0b9b-48bc-9c42-9f34695ca94c.png)
 <br />
@@ -122,16 +119,11 @@ Searches products based on product name /brand name /category name or even a **r
 
 ## Viewing some Admin restricted information about the store
 ![Screenshot (117)](https://user-images.githubusercontent.com/108218688/231086877-f3c6a3e3-94c2-472b-9c37-5fd9406ce3a4.png)
-![Screenshot (118)](https://user-images.githubusercontent.com/108218688/231086888-6719d146-247c-4129-add0-3ffe0206fdfc.png)
-<br />
-![Screenshot (119)](https://user-images.githubusercontent.com/108218688/231086905-34ee4971-6fce-40f0-a6f4-e612e7ebbee0.png)
-<br />
-![Screenshot (120)](https://user-images.githubusercontent.com/108218688/231086917-16a20b01-674a-4602-bb1a-9186b4dbd280.png)
-<br />
-![Screenshot (121)](https://user-images.githubusercontent.com/108218688/231086931-19cfd4f6-e17c-4a84-b3e0-4bc2b36b472d.png)
-<br />
-![Screenshot (122)](https://user-images.githubusercontent.com/108218688/231086832-ba6f019b-26e4-4cca-b49c-bb5a3bf7ec79.png)
-<br />
+![Screenshot (118)](https://user-images.githubusercontent.com/108218688/231086888-6719d146-247c-4129-add0-3ffe0206fdfc.png)  
+![Screenshot (119)](https://user-images.githubusercontent.com/108218688/231086905-34ee4971-6fce-40f0-a6f4-e612e7ebbee0.png)  
+![Screenshot (120)](https://user-images.githubusercontent.com/108218688/231086917-16a20b01-674a-4602-bb1a-9186b4dbd280.png)  
+![Screenshot (121)](https://user-images.githubusercontent.com/108218688/231086931-19cfd4f6-e17c-4a84-b3e0-4bc2b36b472d.png)  
+![Screenshot (122)](https://user-images.githubusercontent.com/108218688/231086832-ba6f019b-26e4-4cca-b49c-bb5a3bf7ec79.png)  
 ![Screenshot (123)](https://user-images.githubusercontent.com/108218688/231086985-b8430b91-773c-4054-908a-78db6d3ab5e2.png)
 <br />
 <br />
