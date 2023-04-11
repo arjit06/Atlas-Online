@@ -21,7 +21,7 @@ Python-Django to manage the backend. The second component is for the database ma
 
 ![Screenshot (81)](https://user-images.githubusercontent.com/108218688/231079999-fc1a0b3b-759d-4ee8-b92a-27905872031e.png)
 ![Screenshot (82)](https://user-images.githubusercontent.com/108218688/231079358-c0cd5513-0df9-43d8-a6d7-7b76f61ebd72.png)
-[Screenshot (83)](https://user-images.githubusercontent.com/108218688/231079485-8d305940-c004-471b-b583-3100cde9133c.png)
+![Screenshot (83)](https://user-images.githubusercontent.com/108218688/231079485-8d305940-c004-471b-b583-3100cde9133c.png)
 ![Screenshot (84)](https://user-images.githubusercontent.com/108218688/231079384-96536c93-7222-4e51-9327-0da3a95d0aeb.png)
 
 <br />
@@ -78,8 +78,10 @@ Searches products based on product name /brand name /category name or even a **r
 ![Screenshot (109)](https://user-images.githubusercontent.com/108218688/231084577-6ba77058-9079-4cfc-99bf-36f8c4faafe9.png)  
 <br />
 <br />
+<br />
 ![Screenshot (125)](https://user-images.githubusercontent.com/108218688/231084637-d79c31fc-34bd-4d1b-bcaa-4eac2f6c9f6e.png)
 ![Screenshot (127)](https://user-images.githubusercontent.com/108218688/231084652-20dd7196-0fdd-45ec-baec-ec22b39cf0c0.png)  
+<br />
 <br />
 <br />
 ![Screenshot (128)](https://user-images.githubusercontent.com/108218688/231084667-ea7a8daf-8f12-479b-a5e6-416bfbb409fb.png)
@@ -97,6 +99,7 @@ Searches products based on product name /brand name /category name or even a **r
 
 ## SignUp and LogIn Modals- with **credentials validity checker**
 ![Screenshot (111)](https://user-images.githubusercontent.com/108218688/231084961-db531c77-e64b-451b-b006-dbb3e89d4d36.png) 
+<br />
 <br />
 <br />
 ![Screenshot (136)](https://user-images.githubusercontent.com/108218688/231085056-3e606221-6255-4e77-b4fd-06c31d366b57.png)
@@ -129,13 +132,17 @@ Searches products based on product name /brand name /category name or even a **r
 ![Screenshot (118)](https://user-images.githubusercontent.com/108218688/231086888-6719d146-247c-4129-add0-3ffe0206fdfc.png)  
 <br />
 <br />
+<br />
 ![Screenshot (119)](https://user-images.githubusercontent.com/108218688/231086905-34ee4971-6fce-40f0-a6f4-e612e7ebbee0.png) 
+<br />
 <br />
 <br />
 ![Screenshot (120)](https://user-images.githubusercontent.com/108218688/231086917-16a20b01-674a-4602-bb1a-9186b4dbd280.png) 
 <br />
 <br />
+<br />
 ![Screenshot (121)](https://user-images.githubusercontent.com/108218688/231086931-19cfd4f6-e17c-4a84-b3e0-4bc2b36b472d.png) 
+<br />
 <br />
 <br />
 ![Screenshot (122)](https://user-images.githubusercontent.com/108218688/231086832-ba6f019b-26e4-4cca-b49c-bb5a3bf7ec79.png)  
