@@ -66,18 +66,20 @@ Python-Django to manage the backend. The second component is for the database ma
 ![Screenshot (105)](https://user-images.githubusercontent.com/108218688/231083960-9c00c81a-9ea8-40b3-8cb7-51892cc2b9f1.png)
 
 <br />
-<br />
 
 **And many more catgories...**
 <br />
+<br />
 
 ## Advanced Product Search function
-searches products base on product name /brand name /category name or even a **related keyword** !
+Searches products based on product name /brand name /category name or even a **related keyword** !
 
 ![Screenshot (108)](https://user-images.githubusercontent.com/108218688/231084549-b8aa87cd-db08-4818-9683-f7b906962b04.png)
 ![Screenshot (109)](https://user-images.githubusercontent.com/108218688/231084577-6ba77058-9079-4cfc-99bf-36f8c4faafe9.png)
+<br />
 ![Screenshot (125)](https://user-images.githubusercontent.com/108218688/231084637-d79c31fc-34bd-4d1b-bcaa-4eac2f6c9f6e.png)
 ![Screenshot (127)](https://user-images.githubusercontent.com/108218688/231084652-20dd7196-0fdd-45ec-baec-ec22b39cf0c0.png)
+<br />
 ![Screenshot (128)](https://user-images.githubusercontent.com/108218688/231084667-ea7a8daf-8f12-479b-a5e6-416bfbb409fb.png)
 ![Screenshot (129)](https://user-images.githubusercontent.com/108218688/231084675-8dac7d52-d7f3-499a-ab2d-490f560b5e4c.png)
 <br />
@@ -93,6 +95,7 @@ searches products base on product name /brand name /category name or even a **re
 
 ## SignUp and LogIn Modals- with **credentials validity checker**
 ![Screenshot (111)](https://user-images.githubusercontent.com/108218688/231084961-db531c77-e64b-451b-b006-dbb3e89d4d36.png)
+<br />
 ![Screenshot (136)](https://user-images.githubusercontent.com/108218688/231085056-3e606221-6255-4e77-b4fd-06c31d366b57.png)
 ![Screenshot (112)](https://user-images.githubusercontent.com/108218688/231085142-2457b8e6-0b9b-48bc-9c42-9f34695ca94c.png)
 <br />
@@ -110,7 +113,9 @@ searches products base on product name /brand name /category name or even a **re
 ![Screenshot (114)](https://user-images.githubusercontent.com/108218688/231085958-0270f9aa-2614-4f6f-bd74-b369995f2e28.png)
 ![Screenshot (115)](https://user-images.githubusercontent.com/108218688/231085986-e1863108-ffcb-41b4-ba87-788ab58a1b7c.png)
 <br />
+<br />
 **Clicking the Empty Cart Button**
+<br />
 ![Screenshot (116)](https://user-images.githubusercontent.com/108218688/231085992-83f9300e-1bb0-439a-8241-1838295a69ae.png)
 <br />
 <br />
@@ -118,10 +123,15 @@ searches products base on product name /brand name /category name or even a **re
 ## Viewing some Admin restricted information about the store
 ![Screenshot (117)](https://user-images.githubusercontent.com/108218688/231086877-f3c6a3e3-94c2-472b-9c37-5fd9406ce3a4.png)
 ![Screenshot (118)](https://user-images.githubusercontent.com/108218688/231086888-6719d146-247c-4129-add0-3ffe0206fdfc.png)
+<br />
 ![Screenshot (119)](https://user-images.githubusercontent.com/108218688/231086905-34ee4971-6fce-40f0-a6f4-e612e7ebbee0.png)
+<br />
 ![Screenshot (120)](https://user-images.githubusercontent.com/108218688/231086917-16a20b01-674a-4602-bb1a-9186b4dbd280.png)
+<br />
 ![Screenshot (121)](https://user-images.githubusercontent.com/108218688/231086931-19cfd4f6-e17c-4a84-b3e0-4bc2b36b472d.png)
+<br />
 ![Screenshot (122)](https://user-images.githubusercontent.com/108218688/231086832-ba6f019b-26e4-4cca-b49c-bb5a3bf7ec79.png)
+<br />
 ![Screenshot (123)](https://user-images.githubusercontent.com/108218688/231086985-b8430b91-773c-4054-908a-78db6d3ab5e2.png)
 <br />
 <br />
