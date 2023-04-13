@@ -159,9 +159,6 @@ Now viewing the Queries
 ![Screenshot (123)](https://user-images.githubusercontent.com/108218688/231086985-b8430b91-773c-4054-908a-78db6d3ab5e2.png)
 <br />
 <br />
-![Screenshot (140)](https://user-images.githubusercontent.com/108218688/231733968-2da3a7b4-ef2c-40ea-9515-6c6592692e90.png)
-<br />
-<br />
 ![Screenshot (141)](https://user-images.githubusercontent.com/108218688/231734004-03a97835-29aa-49ab-89a7-b4b8cc18e738.png)
 <br />
 <br />
@@ -180,7 +177,6 @@ Now viewing the Queries
 
 ## Viewing the purchase history of a user by selecting the **Your Orders** section from the Offcanvas
 ![Screenshot (150)](https://user-images.githubusercontent.com/108218688/231734604-1dd05e0b-c4b0-47dc-b468-cb0bbcf20d86.png)
-<br />
 <br />
 
 
