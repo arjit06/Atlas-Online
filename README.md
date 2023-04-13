@@ -188,7 +188,6 @@ Now viewing the Queries
 5. Checking one's Order History <br />
 6. Proceed to Checkout 
 <br />
-<br />
 
 ## Querying the Database
 1. Who are the top 5 customers who have the most bills in the store ordered by the number of their bills ? <br />
