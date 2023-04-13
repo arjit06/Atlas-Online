@@ -4,6 +4,9 @@ from math import ceil
 from .models import Items,Customer,Bills,Ledger,Category,Product,Brand,Finance
 import json
 from datetime import date
+import mysql.connector
+con=mysql.connector.connect(host="localhost", user="root", password="1234root", database="atlas")
+curr=con.cursor()
 
 customer=-1
 Cart=""
@@ -125,9 +128,11 @@ def searchMatch(product , query):
     brand_name=product.brand_name.lower()
     category_name=product.category_name.lower()
     descript=product.descript.lower()
+    price=str(product.cost_price)
     query=query.lower()
+    
 
-    if ((query in descript) or (query in product_name) or (query in brand_name) or (query in category_name)):
+    if ((query in descript) or (query in product_name) or (query in brand_name) or (query in category_name) or (query in price)):
         return True
     else :
         return False
@@ -225,10 +230,74 @@ def query_output_top10(request):
     return render(request,'shop/query_output_top10.html',params)
 
 def query_output_all_cats_by_profit(request):
-    l=Finance.objects.raw("select finance_id,cust_name,count(distinct bill_no) as cnt from finance group by customer_id  order by count(distinct bill_no) desc  Limit 5;")
-    params={"customers":l}
+    s=''' select category_name, ((sum(selling_price)-sum(cost_price))/sum(cost_price))*100 as profit from inventory, category
+where  category.category_id=inventory.category_id
+group by category_name
+order by ( ((sum(selling_price)-sum(cost_price))/sum(cost_price))*100) desc;'''
+    curr.execute(s)
+    l=curr.fetchall()
+
+    params={"categories":l}
         
-    return render(request,'shop/query_output_top10.html',params)
+    return render(request,'shop/query_output_all_cats_by_profit.html',params)
+
+def query_output_avg_price_brands(request):
+    s='''select brand_name ,avg(selling_price) from inventory,brand
+where brand.brand_id=inventory.brand_id
+group by brand_name
+order by avg(selling_price);'''
+    curr.execute(s)
+    l=curr.fetchall()
+    # print(l)
+    params={"brands":l}
+        
+    return render(request,'shop/query_output_avg_price_brands.html',params)
+
+def query_output_purchase_history(request):
+    id=customer.customer_id
+
+    s='''select product_name, quantity, subtotal from bills , product
+where product.product_id=bills.product_id and bill_no in (select bill_no from ledger where customer_id={});'''.format(id)
+    curr.execute(s)
+    l=curr.fetchall()
+    print(l)
+    params={"orders":l}
+        
+    return render(request,'shop/query_output_purchase_history.html',params)
+
+def query_output_yearly_profit(request):
+    s='''select year(date_of_purchase),((sum(selling_price*bills.quantity)-sum(cost_price*bills.quantity))/sum(cost_price*bills.quantity))*100 as profit from inventory,bills,ledger
+where bills.product_id=inventory.product_id and bills.category_id=inventory.category_id and bills.brand_id=inventory.brand_id and bills.bill_no=ledger.bill_no
+group by year(date_of_purchase);'''
+    curr.execute(s)
+    l=curr.fetchall()
+    # print(l)
+    params={"profits":l}
+        
+    return render(request,'shop/query_output_yearly_profit.html',params)
+
+def query_output_qty_checker(request):
+    s='''select product_name,sum(quantity) from inventory,product
+where product.product_id=inventory.product_id
+group by product_name
+having sum(quantity)<40;'''
+    curr.execute(s)
+    l=curr.fetchall()
+    # print(l)
+    params={"products":l}
+        
+    return render(request,'shop/query_output_qty_checker.html',params)
+
+def query_output_product_per_brand(request):
+    s='''select product_name,brand_name from product_to_brand,product,brand
+where product_to_brand.product_id=product.product_id and product_to_brand.brand_id=brand.brand_id;'''
+    curr.execute(s)
+    l=curr.fetchall()
+    # print(l)
+    params={"products":l}
+        
+    return render(request,'shop/query_output_product_per_brand.html',params)
+
     
 
 def query_output_olap1_disinct_prods_int_year(request):

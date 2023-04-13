@@ -33,7 +33,11 @@ urlpatterns = [
 
     path('query_output_top10/',views.query_output_top10 ,name="query1"),
     path('query_output_all_cats_by_profit/',views.query_output_all_cats_by_profit ,name="query2"),
-    path('query_output_all_cats_by_profit/',views.query_output_all_cats_by_profit ,name="query2"),
+    path('query_output_avg_price_brands/',views.query_output_avg_price_brands ,name="query2"),
+    path('query_output_purchase_history/',views.query_output_purchase_history ,name="query2"),
+    path('query_output_yearly_profit/',views.query_output_yearly_profit ,name="query2"),
+    path('query_output_qty_checker/',views.query_output_qty_checker ,name="query2"),
+    path('query_output_product_per_brand/',views.query_output_product_per_brand ,name="query2"),
 
     # path('cart/',views.cart , name="cart")
     re_path(r'^cart$', views.cart, name='cart')
