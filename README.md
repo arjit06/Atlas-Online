@@ -143,6 +143,7 @@ Entering incorrect credentials while logging in
 Now viewing the Queries 
 <br />
 <br />
+
 ![Screenshot (119)](https://user-images.githubusercontent.com/108218688/231086905-34ee4971-6fce-40f0-a6f4-e612e7ebbee0.png) 
 <br />
 <br />
