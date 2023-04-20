@@ -25,6 +25,11 @@ urlpatterns = [
     path('your_orders/',views.orders ,name="your_orders"),
 
     path('admin_page/',views.admin_page ,name="admin"),
+    path('new_product/',views.new_product ,name="query"),
+    path('delete_category/',views.delete_category ,name="query"),
+    path('return_order/',views.return_order,name="query"),
+
+
     path('query_output/',views.query_output ,name="query"),
     path('query_output_olap1_disinct_prods_int_year/',views.query_output_olap1_disinct_prods_int_year ,name="olap1"),
     path('query_output_olap2_brand_wise_profit_in_year/',views.query_output_olap2_brand_wise_profit_in_year ,name="olap2"),

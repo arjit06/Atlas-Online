@@ -5,7 +5,7 @@ from .models import Items,Customer,Bills,Ledger,Category,Product,Brand,Finance
 import json
 from datetime import date
 import mysql.connector
-con=mysql.connector.connect(host="localhost", user="root", password="1234root", database="atlas")
+con=mysql.connector.connect(host="localhost", user="root", password="1234root", database="atlasonline")
 curr=con.cursor()
 
 customer=-1
@@ -94,8 +94,9 @@ def signup(request):
         email=request.POST.get('email','')
         password=request.POST.get('password','')
         address=request.POST.get('address','')
+        type=request.POST.get('cust_type','')
         # print(name,email,password,address)
-        new_customer=Customer(cust_name=name,cust_pass=password, email=email,residence=address)
+        new_customer=Customer(cust_name=name,cust_pass=password, email=email,residence=address,cust_type=type)
         new_customer.save()
     return redirect("/shop/")
 
@@ -210,18 +211,141 @@ def checkout(request):
        new_ledger=Ledger(bill_no=max+1, date_of_purchase =date.today(), customer=customer)
        new_ledger.save()
 
+   ans=""
+   ans+="start transaction;"
+   ans+='savepoint s1;'
+
+   final_total=0
+   
+   
    for a in d:
-        temp_prod=Items.objects.get(item_id=a)
-        new_bill=Bills(max+1,category=Category.objects.get(category_name=temp_prod.category_name) ,product=Product.objects.get(product_name=temp_prod.product_name),brand=Brand.objects.get(brand_name=temp_prod.brand_name),quantity=d[a],subtotal=d[a]*temp_prod.cost_price)
-        new_bill.save()
+        s="select * from inventory where  inventory_id='{}'".format(a)
+        curr.execute(s)
+        l=curr.fetchall()
+        # print(l)
+        subtotal=d[a]*l[0][5]
+        final_total+=subtotal
+
+        s="insert into bills (bill_no,category_id,product_id,brand_id,quantity,subtotal) values({},{},{},{},{},{} );".format(max,l[0][0],l[0][1],l[0][2],d[a],subtotal)
+        ans+=s
+        
+        
+        # new_bill=Bills(max+1,category=Category.objects.get(category_name=temp_prod.category_name) ,product=Product.objects.get(product_name=temp_prod.product_name),brand=Brand.objects.get(brand_name=temp_prod.brand_name),quantity=d[a],subtotal=d[a]*temp_prod.cost_price)
+        # new_bill.save()
+   if final_total<1000:
+       ans+="rollback;"
+   else: ans+="commit;"
+   print(ans)
+
+   result_iterator=curr.execute(ans,multi=True)
+   for res in result_iterator:
+        print("Running query: ", res)  # Will print out a short representation of the query
+        print(f"Affected {res.rowcount} rows" )
+   if final_total<1000:
+       con.commit()
+   else: con.rollback()
+    
    return redirect("/shop/")
 
+def return_order(request):
+    bil= request.GET.get('bill')
+    print(bil)
+    print(1)
+    s="select category_id,product_id,brand_id,quantity from bills where bill_no={};".format(bil)
+    curr.execute(s)
+    l=curr.fetchall()
+    print(2)
+
+    ans=""
+
+    s='start transaction;'
+    ans+=s
+    print(3)
+    
+    for a in l:
+        s="update inventory set quantity=quantity+{} where category_id={} and product_id={} and brand_id={};".format(a[3],a[0],a[1],a[2])
+        ans+=s
+    print(4)
+    s="delete from bills where bill_no={};".format(bil)
+    ans+=s
+    s="delete from ledger where bill_no={};".format(bil)
+    ans+=s
+    ans+="commit;"
+    print(5)
+
+    result_iterator=curr.execute(ans,multi=True)
+    for res in result_iterator:
+        print("Running query: ", res)  # Will print out a short representation of the query
+        print(f"Affected {res.rowcount} rows" )
+    con.commit()
+    return render(request,'shop/admin_page.html')
+
+    
 def admin_page(request):
      return render(request,'shop/admin_page.html')
 
-def query_output(request):
+def new_product(request):
+    prod_name= request.GET.get('prod_name')
+    prod_categ= request.GET.get('prod_categ')
+    prod_brand= request.GET.get('prod_brand')
+    prod_cost= request.GET.get('prod_cost')
+    prod_sell= request.GET.get('prod_sell')
+    prod_qty= request.GET.get('prod_qty')
+    s='''
+start transaction;
+SET @new_category_id=(select max(category_id)+1 from category);
+SET @new_product_id=(select max(product_id)+1 from product);
+SET @new_brand_id=(select brand_id from brand where brand_name='{}');
+insert into category values(@new_category_id,'{}',"new category");
+insert into product (product_id,product_name) values(@new_product_id,'{}');
+insert into category_to_product(category_id,product_id) values(@new_category_id,@new_product_id);
+insert into product_to_brand(product_id,brand_id) values(@new_product_id,@new_brand_id);
+insert into inventory(category_id,product_id,brand_id,selling_price,quantity,cost_price) values(@new_category_id,@new_product_id,@new_brand_id,{},{},{});
+commit; '''.format(prod_brand,prod_categ,prod_name,prod_sell,prod_qty,prod_cost)
+
+    result_iterator=curr.execute(s,multi=True)
+    for res in result_iterator:
+        print("Running query: ", res)  # Will print out a short representation of the query
+        print(f"Affected {res.rowcount} rows" )
+    con.commit()
+    return render(request,'shop/admin_page.html')
+
+
+def delete_category(request):
+    categ= request.GET.get('categ')
+    s='''
+start transaction;
+SET @id=(select category_id from category where category_name='{}');
+SET @productId=(select product_id from category_to_product where category_id=@id);
+delete from inventory where product_id=@productId;
+delete from category_to_product where product_id=@productId;
+delete from product_to_brand where product_id=@productId;
+delete from product where product_id=@productId;
+delete from category where category_id=@id;
+commit;
+    '''.format(categ)
+    result_iterator=curr.execute(s,multi=True)
+    for res in result_iterator:
+        pass
+    con.commit()
+    return render(request,'shop/admin_page.html')
     
-    return render(request,'shop/query_output.html')
+    
+
+def query_output(request):
+    query= request.GET.get('custom')
+    # query= "select * from customer;"
+    curr.execute(query)
+    # con.commit()
+    l=curr.fetchall()
+    headers=[]
+    print (l)
+    if len(l)!=0: 
+        for i in curr.description:headers.append(i[0])
+   
+    params={"values":l,"headings":headers}
+
+    return render(request,'shop/query_output.html',params)
 
 def query_output_top10(request):
     l=Finance.objects.raw("select finance_id,cust_name,count(distinct bill_no) as cnt from finance group by customer_id  order by count(distinct bill_no) desc  Limit 5;")
