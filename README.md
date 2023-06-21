@@ -136,7 +136,6 @@ Entering incorrect credentials while logging in
 ## Viewing some Admin restricted information about the store
 ![Screenshot (117)](https://user-images.githubusercontent.com/108218688/231086877-f3c6a3e3-94c2-472b-9c37-5fd9406ce3a4.png)
 ![Screenshot (140)](https://user-images.githubusercontent.com/108218688/231733837-5b977f87-98ef-44b4-8419-1a26070adfcd.png)
-![Screenshot (153)](https://user-images.githubusercontent.com/108218688/233455774-195c69b1-3ebc-41d3-8b27-67ff7e78c710.png)
 
 <br />
 <br />
@@ -193,9 +192,8 @@ Now viewing the Queries
 7. Return an Order <br/>
 
 ## Features offered to an Admin
-1. Running any query to view any of the underlying table. <br />
-2. Executing other normal and OLAP queries. <br />
-3. Executing some non-conflicting transactions as follows:- <br />
+1. Viewing statistical data to handle finances relating to purchase and sale of different goods, and generating profit / loss statements at regular intervals.  <br />
+2. Executing some non-conflicting transactions as follows:- <br />
 ### Transactions 
 a. Adding a product whose category is not in category, then we can first add the category to the category table (Brand already exists). <br />
 b. When deleting a category, then also delete all instances of products that belong to that category in the inventory and product to category. <br />
