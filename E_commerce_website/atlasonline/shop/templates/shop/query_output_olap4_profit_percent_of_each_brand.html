@@ -17,12 +17,13 @@
         <th>Brand Name</th>
         <th>Profit Percentage</th>
     </tr>
-{% for a in products %}
 
+
+{% for a in products %}
 <tr>
-    <td>{{a.product_name}}</td>
-    <td>{{a.brand_name}}</td>
-    <td>{{a.profit_percentage}}</td>
+    {% for b in a %}
+       <td>{{b}}</td>
+    {% endfor %}
 </tr>
 {% endfor %}
 </table>

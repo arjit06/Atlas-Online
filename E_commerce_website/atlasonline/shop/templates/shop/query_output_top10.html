@@ -20,10 +20,10 @@
         <th>No. of Bills</th>
     </tr>
 {% for a in customers %}
-
 <tr>
-    <td>{{a.cust_name}}</td>
-    <td>{{a.cnt}}</td>
+    {% for b in a %}
+       <td>{{b}}</td>
+    {% endfor %}
 </tr>
 {% endfor %}
 </table>

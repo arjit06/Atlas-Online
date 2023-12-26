@@ -8,6 +8,51 @@ import mysql.connector
 con=mysql.connector.connect(host="localhost", user="root", password="1234root", database="atlasonline")
 curr=con.cursor()
 
+
+# -- trigger one: for generating final bill for a person while chekout
+
+# -- create trigger total_finder before insert on bills
+# -- for each row set @total=@total+ new.subtotal*1.12; -- tax
+
+
+
+# -- delimiter //
+# -- create trigger default_rype_of_customer before insert on customer
+# -- for each row
+# -- begin
+# --     if new.cust_type <1 then 
+# --         set new.cust_type=1;
+# -- 	end if;
+# -- end; //
+
+# -- delimiter ;
+
+s="select * from product;"
+curr.execute(s)
+products=curr.fetchall()
+product_to_product_id={}
+for a in products:
+    product_to_product_id[a[1]]=a[0]
+# print(product_to_product_id)
+
+s="select * from category;"
+curr.execute(s)
+categories=curr.fetchall()
+category_to_category_id={}
+for a in categories:
+    category_to_category_id[a[1]]=a[0] 
+# print(category_to_category_id)
+
+s="select * from brand;"
+curr.execute(s)
+brands=curr.fetchall()
+brand_to_brand_id={}
+for a in brands:
+    brand_to_brand_id[a[1]]=a[0]
+    
+    
+    
+
 customer=-1
 Cart=""
 def index(request,flag=0):
@@ -117,7 +162,20 @@ def logout(request):
       global customer
       customer=-1
       return index(request)
-
+  
+def admin_page(request):
+     if request.method=='POST':
+        id=request.POST.get('id','')
+        password=request.POST.get('password','')
+        # temp_customer=Customer.objects.filter(email=email,cust_pass=password)
+        if id=='jarvis' and password=='jarvis':
+            return render(request,'shop/admin_page.html')
+        else: 
+            return index(request,flag=1)
+        
+      
+     
+ 
 def prodView(request,id):
     product= Items.objects.get(item_id=id)
     # print(id)
@@ -129,7 +187,7 @@ def searchMatch(product , query):
     brand_name=product.brand_name.lower()
     category_name=product.category_name.lower()
     descript=product.descript.lower()
-    price=str(product.cost_price)
+    price=str(product.selling_price)
     query=query.lower()
     
 
@@ -161,8 +219,8 @@ def cart(request):
     var=0
     for a in d:
         temp_prod=Items.objects.get(item_id=a)
-        Products[temp_prod]=[d[a],d[a]*temp_prod.cost_price]
-        var+=d[a]*temp_prod.cost_price
+        Products[temp_prod]=[d[a],d[a]*temp_prod.selling_price]
+        var+=d[a]*temp_prod.selling_price
     # print(Products)
     params={'products':Products,'sum':var,'customer':customer}
     return render(request,"shop/viewCart.html",params)
@@ -217,33 +275,35 @@ def checkout(request):
 
    final_total=0
    
+   print(d)
    
+    
    for a in d:
-        s="select * from inventory where  inventory_id='{}'".format(a)
+        s="select * from items where item_id='{}'".format(a)
         curr.execute(s)
         l=curr.fetchall()
         # print(l)
-        subtotal=d[a]*l[0][5]
+        subtotal=d[a]*l[0][8]
         final_total+=subtotal
 
-        s="insert into bills (bill_no,category_id,product_id,brand_id,quantity,subtotal) values({},{},{},{},{},{} );".format(max,l[0][0],l[0][1],l[0][2],d[a],subtotal)
+        s="insert into bills (bill_no,category_id,product_id,brand_id,quantity,subtotal) values({},{},{},{},{},{} );".format(max,category_to_category_id[l[0][0]],product_to_product_id[l[0][1]],brand_to_brand_id[l[0][2]],d[a],subtotal)
         ans+=s
         
         
         # new_bill=Bills(max+1,category=Category.objects.get(category_name=temp_prod.category_name) ,product=Product.objects.get(product_name=temp_prod.product_name),brand=Brand.objects.get(brand_name=temp_prod.brand_name),quantity=d[a],subtotal=d[a]*temp_prod.cost_price)
         # new_bill.save()
-   if final_total<1000:
-       ans+="rollback;"
-   else: ans+="commit;"
-   print(ans)
+#    if final_total<1000:
+#        ans+="rollback;"
+#    else: ans+="commit;"
+#    print(ans)
 
    result_iterator=curr.execute(ans,multi=True)
    for res in result_iterator:
         print("Running query: ", res)  # Will print out a short representation of the query
         print(f"Affected {res.rowcount} rows" )
-   if final_total<1000:
-       con.commit()
-   else: con.rollback()
+#    if final_total<1000:
+#        con.commit()
+#    else: con.rollback()
     
    return redirect("/shop/")
 
@@ -281,8 +341,7 @@ def return_order(request):
     return render(request,'shop/admin_page.html')
 
     
-def admin_page(request):
-     return render(request,'shop/admin_page.html')
+
 
 def new_product(request):
     prod_name= request.GET.get('prod_name')
@@ -348,7 +407,9 @@ def query_output(request):
     return render(request,'shop/query_output.html',params)
 
 def query_output_top10(request):
-    l=Finance.objects.raw("select finance_id,cust_name,count(distinct bill_no) as cnt from finance group by customer_id  order by count(distinct bill_no) desc  Limit 5;")
+    s="select cust_name,count(distinct bill_no) as cnt from finance group by cust_name order by count(distinct bill_no) desc  Limit 5;"
+    curr.execute(s)
+    l=curr.fetchall()
     params={"customers":l}
         
     return render(request,'shop/query_output_top10.html',params)
@@ -425,25 +486,36 @@ where product_to_brand.product_id=product.product_id and product_to_brand.brand_
     
 
 def query_output_olap1_disinct_prods_int_year(request):
-    l=Finance.objects.raw("select finance_id,category_name,Year(date_of_purchase) as year ,sum(quantity) as Quantity_sold from finance group by category_name,Year(date_of_purchase) with rollup;")
+
+    s="select category_name,Year(date_of_purchase) as year ,sum(quantity) as Quantity_sold from finance group by category_name,Year(date_of_purchase) with rollup;"
+    curr.execute(s)
+    l=curr.fetchall()
+    
+    
     params={"products":l}
         
     return render(request,'shop/query_output_olap1_disinct_prods_int_year.html',params)
 
 def query_output_olap2_brand_wise_profit_in_year(request):
-    l=Finance.objects.raw("select finance_id, brand_name,Year(date_of_purchase) as year,((sum(selling_price*quantity)-sum(cost_price*quantity))) as profit  from finance group by brand_name,Year(date_of_purchase) with rollup;")
+    s="select brand_name,Year(date_of_purchase) as year,((sum(selling_price*quantity)-sum(cost_price*quantity))) as profit  from finance group by brand_name,Year(date_of_purchase) with rollup;"
+    curr.execute(s)
+    l=curr.fetchall()
     params={"profits":l}
         
     return render(request,'shop/query_output_olap2_brand_wise_profit_in_year.html',params)
 
 def query_output_olap3_amt_spent_by_cust_each_month(request):
-    l=Finance.objects.raw("select finance_id, cust_name, month(date_of_purchase) as month, year(date_of_purchase) as year , sum(subtotal) as total from finance group by  cust_name, month(date_of_purchase), year(date_of_purchase)  with rollup;")
+    s="select cust_name, month(date_of_purchase) as month, year(date_of_purchase) as year , sum(subtotal) as total from finance group by  cust_name, month(date_of_purchase), year(date_of_purchase)  with rollup;"
+    curr.execute(s)
+    l=curr.fetchall()
     params={"customers":l}
         
     return render(request,'shop/query_output_olap3_amt_spent_by_cust_each_month.html',params)
 
 def query_output_olap4_profit_percent_of_each_brand(request):
-    l=Finance.objects.raw("select finance_id, product_name, brand_name, ((sum(selling_price)-sum(cost_price))/sum(cost_price))*100 as profit_percentage from finance group by  product_name, brand_name  with rollup;")
+    s="select product_name, brand_name, ((sum(selling_price)-sum(cost_price))/sum(cost_price))*100 as profit_percentage from finance group by  product_name, brand_name  with rollup;"
+    curr.execute(s)
+    l=curr.fetchall()
     params={"products":l}
         
     return render(request,'shop/query_output_olap4_profit_percent_of_each_brand.html',params)

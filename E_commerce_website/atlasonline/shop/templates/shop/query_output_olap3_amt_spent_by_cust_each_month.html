@@ -18,13 +18,13 @@
         <th>Year</th>
         <th>Total</th>
     </tr>
-{% for a in customers %}
 
+
+{% for a in customers %}
 <tr>
-    <td>{{a.cust_name}}</td>
-    <td>{{a.month}}</td>
-    <td>{{a.year}}</td>
-    <td>{{a.total}}</td>
+    {% for b in a %}
+       <td>{{b}}</td>
+    {% endfor %}
 </tr>
 {% endfor %}
 </table>
