@@ -265,9 +265,12 @@ def checkout(request):
        for a in last:
            if a.bill_no>max:
                max=a.bill_no
-       print(max+1)
-       new_ledger=Ledger(bill_no=max+1, date_of_purchase =date.today(), customer=customer)
+       max=max+1
+       dop=date.today()
+       new_ledger=Ledger(bill_no=max, date_of_purchase =dop, customer=customer)
        new_ledger.save()
+    
+    
 
    ans=""
    ans+="start transaction;"
@@ -277,6 +280,11 @@ def checkout(request):
    
    print(d)
    
+   s="select * from finance;"
+   curr.execute(s)
+   l=curr.fetchall()
+   new_len=len(l)+1
+    
     
    for a in d:
         s="select * from items where item_id='{}'".format(a)
@@ -285,10 +293,15 @@ def checkout(request):
         # print(l)
         subtotal=d[a]*l[0][8]
         final_total+=subtotal
-
+        
+       
         s="insert into bills (bill_no,category_id,product_id,brand_id,quantity,subtotal) values({},{},{},{},{},{} );".format(max,category_to_category_id[l[0][0]],product_to_product_id[l[0][1]],brand_to_brand_id[l[0][2]],d[a],subtotal)
         ans+=s
-        s="insert into finance ()"
+        
+        s="insert into finance (category_id,category_name,product_id,product_name,brand_id,brand_name,selling_price,quantity,cost_price,bill_no,subtotal,date_of_purchase,customer_id,cust_name,finance_id) values({},'{}',{},'{}',{},'{}',{},{},{},{},{},'{}',{},'{}',{});".format(category_to_category_id[l[0][0]],str(l[0][0]),product_to_product_id[l[0][1]],str(l[0][1]),brand_to_brand_id[l[0][2]],str(l[0][2]),l[0][8],d[a],l[0][4],max,subtotal,str(dop),customer.customer_id,str(customer),new_len)
+        print(s)
+        new_len+=1
+        ans+=s
         
         
         # new_bill=Bills(max+1,category=Category.objects.get(category_name=temp_prod.category_name) ,product=Product.objects.get(product_name=temp_prod.product_name),brand=Brand.objects.get(brand_name=temp_prod.brand_name),quantity=d[a],subtotal=d[a]*temp_prod.cost_price)
@@ -305,6 +318,7 @@ def checkout(request):
    for res in result_iterator:
         print("Running query: ", res)  # Will print out a short representation of the query
         print(f"Affected {res.rowcount} rows" )
+
 #    if final_total<1000:
 #        con.commit()
 #    else: con.rollback()
@@ -444,13 +458,30 @@ order by avg(selling_price);'''
 
 def query_output_purchase_history(request):
     id=customer.customer_id
-
-    s='''select product_name, quantity, subtotal from bills , product
-where product.product_id=bills.product_id and bill_no in (select bill_no from ledger where customer_id={});'''.format(id)
+    
+    s=f'select bill_no,date_of_purchase from ledger where customer_id={id}'
+    # print(s)
     curr.execute(s)
-    l=curr.fetchall()
-    print(l)
-    params={"orders":l}
+    bills=curr.fetchall()
+    print(bills,end="\n")
+    
+    orders=[]
+    
+    for a in bills:
+        s=f'select product_name, quantity, subtotal from bills , product where product.product_id=bills.product_id and bill_no={a[0]};'
+        # print(s) 
+        
+        curr.execute(s)
+        l=curr.fetchall()
+        for i in range(0,len(l)):
+            x=l[i]+(a[1],a[0])
+            l[i]=x
+        
+        if len(l)!=0:
+            orders.append(l)
+        
+    print(orders)
+    params={"orders":orders}
         
     return render(request,'shop/query_output_purchase_history.html',params)
 

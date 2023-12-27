@@ -4,21 +4,27 @@
 
 {% block body %}
 {% load static %}
-<h1 class="text-center mt-4">Query Output:</h1>
-<h2 class="text-center mt-4 mb-4">Purchase History</h2>
-<table class="table table-bordered table-striped  text-center  mt-3 mb-3 ">
+<!-- <h1 class="text-center mt-4">Query Output:</h1> -->
+<h1 class="text-center mt-4 mb-4">Purchase History</h1>
+
+{% for c in orders %}
+    <h3 class="text-center mt-5 mb-2">For Items purchased on {{c.0.3}} with bill no.{{c.0.4}} </h3>
+    <table class="table table-bordered table-striped  text-center  mt-3 mb-5 ">
+        <tr>
+            <th>Product Name</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+            <th>Date</th>
+            <th>Bill No.</th>
+        </tr>
+    {% for a in c %}
     <tr>
-        <th>Product Name</th>
-        <th>Quantity</th>
-        <th>Subtotal</th>
+        {% for b in a %}
+        <td>{{b}}</td>
+        {% endfor %}
     </tr>
-{% for a in orders %}
-<tr>
-    {% for b in a %}
-    <td>{{b}}</td>
     {% endfor %}
-</tr>
+    </table>
 {% endfor %}
-</table>
 
 {% endblock %}
