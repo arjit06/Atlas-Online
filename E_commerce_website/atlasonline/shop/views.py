@@ -288,16 +288,20 @@ def checkout(request):
 
         s="insert into bills (bill_no,category_id,product_id,brand_id,quantity,subtotal) values({},{},{},{},{},{} );".format(max,category_to_category_id[l[0][0]],product_to_product_id[l[0][1]],brand_to_brand_id[l[0][2]],d[a],subtotal)
         ans+=s
+        s="insert into finance ()"
         
         
         # new_bill=Bills(max+1,category=Category.objects.get(category_name=temp_prod.category_name) ,product=Product.objects.get(product_name=temp_prod.product_name),brand=Brand.objects.get(brand_name=temp_prod.brand_name),quantity=d[a],subtotal=d[a]*temp_prod.cost_price)
         # new_bill.save()
+   ans+="commit;"
 #    if final_total<1000:
 #        ans+="rollback;"
 #    else: ans+="commit;"
 #    print(ans)
+   
 
    result_iterator=curr.execute(ans,multi=True)
+   con.commit()
    for res in result_iterator:
         print("Running query: ", res)  # Will print out a short representation of the query
         print(f"Affected {res.rowcount} rows" )
@@ -407,7 +411,7 @@ def query_output(request):
     return render(request,'shop/query_output.html',params)
 
 def query_output_top10(request):
-    s="select cust_name,count(distinct bill_no) as cnt from finance group by cust_name order by count(distinct bill_no) desc  Limit 5;"
+    s="select cust_name,count(distinct bill_no) as cnt from finance group by cust_name order by count(distinct bill_no) desc  Limit 10;"
     curr.execute(s)
     l=curr.fetchall()
     params={"customers":l}
