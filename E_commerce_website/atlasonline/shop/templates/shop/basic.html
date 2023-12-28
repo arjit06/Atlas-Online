@@ -210,14 +210,45 @@
             <button class="btn btn-danger mt-3 mb-5 btn-md empty-cart" type="submit" name="Submit">Log Out</button>
           </form>
 
-          <form action="/shop/admin_page/" method="POST">{% csrf_token %}
-            <button class="btn btn-success mt-2 btn-lg" type="submit" name="Submit">Log in as an Admin</button>
-          </form>
+          <!-- <form action="/shop/admin_page/" method="POST">{% csrf_token %} -->
+          <!-- <button class="btn btn-success mt-2 btn-lg" type="submit" name="Submit">Log in as an Admin</button> -->
+          <button class="btn btn-success mt-2 btn-lg" data-bs-toggle="modal" data-bs-target="#loginAsAdminModal">Enter as an Admin</button>
+
+          <!-- </form> -->
         </div>
       </div>
 
     </div>
   </nav>
+
+
+
+  <!-- enter as admin modal  -->
+  <div class="modal fade" id="loginAsAdminModal" tabindex="-1" aria-labelledby="loginAsAdminModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="loginAsAdminModalLabel">Log in as an Admin </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="/shop/admin_page/" method="POST">{% csrf_token %}
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">ID</label>
+              <input type="" class="form-control" id="exampleInputEmail2" name="id">
+              <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Enter Password</label>
+              <input type="password" class="form-control" name="password" id="exampleInputPassword2" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Log in as an Admin</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Log In Modal -->
   <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
