@@ -133,7 +133,10 @@ Entering incorrect credentials while logging in
 <br />
 <br />
 
-## Viewing some Admin restricted information about the store
+## Viewing some Admin restricted information about the store <br>
+Credentials of the admin:<br>
+id: jarvis<br>
+password: jarvis<br>
 ![Screenshot (117)](https://user-images.githubusercontent.com/108218688/231086877-f3c6a3e3-94c2-472b-9c37-5fd9406ce3a4.png)
 ![Screenshot (140)](https://user-images.githubusercontent.com/108218688/231733837-5b977f87-98ef-44b4-8419-1a26070adfcd.png)
 
